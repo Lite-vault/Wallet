@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{#if title}}
+        <title>{{title}}</title>
+    {{else}}
+        <title>LiteVault</title>
+    {{/if}}
+
+    <!-- SEO -->
+    <meta name="description" content="LiteVault is a secure online Litecoin Wallet that uses encrypted wallets and in-browser crypto to deliver a trustless service"/>
+    <meta name="keywords" content="litecoin wallet vault litevault online crypto web"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:url" content="https://www.litevault.net"/>
+    <meta name="twitter:title" content="LiteVault - Secure Litecoin Web Wallet"/>
+    <meta name="twitter:description" content="LiteVault is a secure online web wallet that uses encrypted wallets and in-browser crypto to deliver a trustless service"/>
+    <meta name="twitter:image" content="https://i.imgur.com/zxauFKU.png"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Teko:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- Main Theme & design -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Additional styles -->
+    <link rel="stylesheet" href="/assets/css/wallet.css"/>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="/assets/images/litevault-logo.png"><span>LiteVault</span></a>
+            <span class="pull-right visible-xs-inline ltc-balance" id="navbar-balance" style="font-size: 22px;padding: 7px 7px;"></span>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li {{checkActive '/' current_url}}><a href="/">Home</a></li>
+                <li {{checkActive '/about' current_url}}><a href="/about">About</a></li>
+                <li {{checkActive '/about/hidden-service' current_url}}><a href="/about/hidden-service">Tor Hidden Service</a></li>
+                <li {{checkActive '/contact' current_url}}><a href="/contact">Contact</a></li>
+                <li {{checkActive '/wallet/login' current_url}}><a href="/wallet/login">Wallet</a></li>
+            </ul>
+            <p class="navbar-text navbar-right" id="walletsaved" style="display: none">Wallet Saved</p>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container">
+    {{#if is_tor}}
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-xs-12">
+                <div class="alert alert-danger">SECURITY ISSUE: Dear Tor user, you're accessing
+                    our clearnet site over Tor. This puts you at risk of your SSL being removed and
+                    having a malicious website served. Please use <a href="http://vaultu7dxw5bbg37.onion/">our hidden service</a>
+                    If you would like to know more about this security issue, please <a href="/about/hidden-service">Click Here</a></div>
+        </div>
+    </div>
+    {{/if}}
+</div>
+
+{{{body}}}
+
+<footer class="footer">
+    <div class="container" style="position: relative">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="row">
+                    <p class="donation_text">
+                        This service relies on the community to keep it alive.<br>
+                        Donating just $1 in Litecoins helps contribute towards development time, and server costs.
+                    </p>
+                </div>
+                <div class="row top_padder">
+                    <!-- For security reasons, we don't load the coin widget on wallet pages-->
+                        {{#isWallet current_url}}
+                        <div class="col-xs-12 col-sm-6 col-md-12 text-center">
+                            LTC: <b>LNWEjx3DKSAWKX5fkWfCwa2tWSQeo7ZmnR</b>
+                        {{else}}
+                        <div class="col-xs-6 col-md-6 text-center">
+                            <div id="coinwidget-litecoin-LNWEjx3DKSAWKX5fkWfCwa2tWSQeo7ZmnR"></div>
+                        {{/isWallet}}
+
+                    </div>
+                        {{#isWallet current_url}}
+                            <div class="col-xs-12 col-sm-6 col-md-12 text-center">
+                                BTC: <b>17PPTHmS8N34KYKdDc4Gn1psabteGS8EE3</b>
+                        {{else}}
+                            <div class="col-xs-6 col-md-6 text-center">
+                                <div id="coinwidget-bitcoin-17PPTHmS8N34KYKdDc4Gn1psabteGS8EE3"></div>
+                        {{/isWallet}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 copyright">
+                <div class="copyright_holder">
+                    <div class="copyright_bottom">
+                    &copy; Copyright 2015 - Someguy123
+                    - <a class="light" href="/privacy">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script src="/assets/js/litevault-deps.js"></script>
+<script src="/assets/js/hbpartials.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="/assets/js/wallet.js"></script>
+
+<!-- Donation -->
+{{#isWallet current_url}}
+{{else}}
+<script src="//blockr.io/js_external/coinwidget/coin.js"></script>
+<script src="/assets/js/main.js"></script>
+{{/isWallet}}
+</body>
+</html>
